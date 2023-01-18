@@ -2,8 +2,8 @@
  *	City data - the city name, state name, location designation,
  *				and population est. 2017
  *
- *	@author	
- *	@since	
+ *	@author	Anshul Sinha
+ *	@since	January 15, 2022
  */
 public class City implements Comparable<City> {
 	
@@ -32,6 +32,11 @@ public class City implements Comparable<City> {
 		 return name.compareTo(other.name);
 	 }
 
+	/**
+	 * Compares two cities by name
+	 * @param other 	the other City to compare
+	 * @return		an int similar to the one based on compareTo
+	 */
 	 public int compareByName(City other) {
 		if (!name.equals(other.name)) return name.compareTo(other.name);
 		if (population != other.population) return population - other.population;
@@ -48,6 +53,36 @@ public class City implements Comparable<City> {
 	 }
 	
 	/**	Accessor methods */
+	/**
+	 * Gets the name of city
+	 * @return	the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * Gets state
+	 * @return the state of the city
+	 */
+	public String getState() {
+		return state;
+	}
+
+	/**
+	 * Gets the designation of the city
+	 * @return the designation
+	 */
+	public String getType() {
+		return designation;
+	}
+
+	/**
+	 * Gets the population of city
+	 * @return	the population
+	 */
+	public int getPopulation() {
+		return population;
+	}
 	
 	/**	toString */
 	@Override

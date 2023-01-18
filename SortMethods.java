@@ -1,16 +1,17 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- *	SortMethods - Sorts an array of Integers in ascending order.
+ *	SortMethods - Sorts an array of City in ascending order.
  *
- *	@author 
- *	@since	
+ *	@author Anshul Sinha
+ *	@since	December 20, 2022
  */
 public class SortMethods {
 	
 	/**
 	 *	Bubble Sort algorithm - in ascending order
-	 *	@param arr		array of Integer objects to sort
+	 *	@param arr		array of City objects to sort
 	 */
 	public void bubbleSort(List<City> arr) {
 			for (int outer = arr.size() - 1; outer > 0; outer--) {
@@ -35,7 +36,7 @@ public class SortMethods {
 	
 	/**
 	 *	Selection Sort algorithm - in ascending order (you implement)
-	 *	@param arr		array of Integer objects to sort
+	 *	@param arr		array of City objects to sort
 	 */
 	public List<City> selectionSort(List<City> array) {
 		List<City> arr = array;
@@ -52,7 +53,7 @@ public class SortMethods {
 	
 	/**
 	 *	Insertion Sort algorithm - in ascending order (you implement)
-	 *	@param arr		array of Integer objects to sort
+	 *	@param arr		array of City objects to sort
 	 */
 	public List<City> insertionSort(List<City> array) {
 		List<City> arr = array;
@@ -71,9 +72,92 @@ public class SortMethods {
 	
 	/**
 	 *	Merge Sort algorithm - in ascending order (you implement)
-	 *	@param arr		array of Integer objects to sort
+	 *	@param arr		array of City objects to sort
 	 */
-	public void mergeSort(Integer [] arr) {}
+	public void mergeSort(List<City> arr) 
+	{
+		if (arr.size() >= 2) {
+			int mid = arr.size() / 2;
+			List<City> leftArr = new ArrayList<City>();
+
+			List<City> rightArr = new ArrayList<City>();
+			for (int i = 0; i < mid; i++) leftArr.add(arr.get(i));
+			for (int i = mid; i < arr.size(); i++)
+				rightArr.add(arr.get(i));
+			mergeSort(leftArr);
+			mergeSort(rightArr);
+			int left = 0;
+			int right = 0;
+			int main = 0;
+			while (left < leftArr.size() && right < rightArr.size()) {
+				if (leftArr.get(left).compareTo(rightArr.get(right)) > 0) {
+					arr.set(main, leftArr.get(left));
+					left++;
+					main++;
+				}
+				else {
+					arr.set(main, rightArr.get(right));
+					right++;
+					main++;
+				}
+			}
+			while (left < leftArr.size()) {
+				arr.set(main, leftArr.get(left));
+				left++;
+				main++;
+			}
+			while (right < rightArr.size()) {
+				arr.set(main, rightArr.get(right));
+				right++;
+				main++;
+			}
+
+		}
+	}
+	/**
+	 * Uses merge sort to sort a list of cities
+	 * @param arr	the list to sort
+	 */
+	public void mergeSortByName(List<City> arr) 
+	{
+		if (arr.size() >= 2) {
+			int mid = arr.size() / 2;
+			List<City> leftArr = new ArrayList<City>();
+
+			List<City> rightArr = new ArrayList<City>();
+			for (int i = 0; i < mid; i++) leftArr.add(arr.get(i));
+			for (int i = mid; i < arr.size(); i++)
+				rightArr.add(arr.get(i));
+			mergeSortByName(leftArr);
+			mergeSortByName(rightArr);
+			int left = 0;
+			int right = 0;
+			int main = 0;
+			while (left < leftArr.size() && right < rightArr.size()) {
+				if (leftArr.get(left).compareByName(rightArr.get(right)) < 0) {
+					arr.set(main, leftArr.get(left));
+					left++;
+					main++;
+				}
+				else {
+					arr.set(main, rightArr.get(right));
+					right++;
+					main++;
+				}
+			}
+			while (left < leftArr.size()) {
+				arr.set(main, leftArr.get(left));
+				left++;
+				main++;
+			}
+			while (right < rightArr.size()) {
+				arr.set(main, rightArr.get(right));
+				right++;
+				main++;
+			}
+
+		}
+	}
 	
 	/*****************************************************************/
 	/************************* For Testing ***************************/
@@ -95,57 +179,56 @@ public class SortMethods {
 
 	public static void main(String[] args) {
 		SortMethods se = new SortMethods();
-		//se.run();
+		// se.run();
 	}
 	
-// 	public void run() {
-// 		Integer[] arr = new Integer[10];
-// 		// Fill arr with random numbers
-// 		for (int a = 0; a < 10; a++)
-// 			arr[a] = (int)(Math.random() * 100) + 1;
-// 		System.out.println("\nBubble Sort");
-// 		System.out.println("Array before sort:");
-// 		printArray(arr);
-// 		System.out.println();
-// 		bubbleSort(arr);
-// 		System.out.println("Array after sort:");
-// 		printArray(arr);
-// 		System.out.println();
+	// public void run() {
+	// 	// Integer[] arr = new Integer[10];
+	// 	// Fill arr with random numbers
+	// 	// for (int a = 0; a < 10; a++)
+	// 	// 	arr[a] = (int)(Math.random() * 100) + 1;
+	// 	// System.out.println("\nBubble Sort");
+	// 	// System.out.println("Array before sort:");
+	// 	// printArray(arr);
+	// 	// System.out.println();
+	// 	// bubbleSort(arr);
+	// 	// System.out.println("Array after sort:");
+	// 	// printArray(arr);
+	// 	// System.out.println();
 		
-// 		for (int a = 0; a < 10; a++)
-// 			arr[a] = (int)(Math.random() * 100) + 1;
-// 		System.out.println("\nSelection Sort");
-// 		System.out.println("Array before sort:");
-// 		printArray(arr);
-// 		System.out.println();
-// 		selectionSort(arr);
-// 		System.out.println("Array after sort:");
-// 		printArray(arr);
-// 		System.out.println();
+	// 	// for (int a = 0; a < 10; a++)
+	// 	// 	arr[a] = (int)(Math.random() * 100) + 1;
+	// 	// System.out.println("\nSelection Sort");
+	// 	// System.out.println("Array before sort:");
+	// 	// printArray(arr);
+	// 	// System.out.println();
+	// 	// selectionSort(arr);
+	// 	// System.out.println("Array after sort:");
+	// 	// printArray(arr);
+	// 	// System.out.println();
 
 		
-// 		for (int a = 0; a < 10; a++)
-// 			arr[a] = (int)(Math.random() * 100) + 1;
-// 		System.out.println("\nInsertion Sort");
-// 		System.out.println("Array before sort:");
-// 		printArray(arr);
-// 		System.out.println();
-// 		insertionSort(arr);
-// 		System.out.println("Array after sort:");
-// 		printArray(arr);
-// 		System.out.println();
+	// 	// for (int a = 0; a < 10; a++)
+	// 	// 	arr[a] = (int)(Math.random() * 100) + 1;
+	// 	// System.out.println("\nInsertion Sort");
+	// 	// System.out.println("Array before sort:");
+	// 	// printArray(arr);
+	// 	// System.out.println();
+	// 	// insertionSort(arr);
+	// 	// System.out.println("Array after sort:");
+	// 	// printArray(arr);
+	// 	// System.out.println();
 
-// /*		
-// 		for (int a = 0; a < 10; a++)
-// 			arr[a] = (int)(Math.random() * 100) + 1;
-// 		System.out.println("\nMerge Sort");
-// 		System.out.println("Array before sort:");
-// 		printArray(arr);
-// 		System.out.println();
-// 		mergeSort(arr);
-// 		System.out.println("Array after sort:");
-// 		printArray(arr);
-// 		System.out.println();
-// */
-// 	}
+	
+	// 	Integer[] arr = {54, 26, 93, 17, 77, 31, 44, 55, 20};
+	// 	System.out.println("\nMerge Sort");
+	// 	System.out.println("Array before sort:");
+	// 	printArray(arr);
+	// 	System.out.println();
+	// 	mergeSort(arr);
+	// 	System.out.println("Array after sort:");
+	// 	printArray(arr);
+	// 	System.out.println();
+
+	// }
 }
